@@ -7,7 +7,7 @@ export class CalculationService {
     const rubTryAverage = usdtAverage / tryAverage;
     const rubTryAverageWithCommission = rubTryAverage + 0.05 * rubTryAverage;
     return `USDT: ${usdtAverage} \nTRY: ${tryAverage} \nRUB -> TRY: ${rubTryAverageWithCommission.toFixed(
-      2
+      2,
     )}`;
   };
 }

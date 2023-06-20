@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Telegraf } from 'telegraf';
+import { CalculationService } from './services';
 import { DURATION } from './constants';
-import { CalculationService } from './services/CalculationService';
 
 const token = process.env.TOKEN;
 
