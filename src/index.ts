@@ -17,6 +17,7 @@ if (token) {
       ctx.sendMessage(await CalculationService.getAverageMessage());
     }, DURATION);
     chats.push({ id: ctx.chat.id, interval });
+    console.log(`The watcher has been started by ${ctx.chat.id}`);
   });
 
   bot.command('currentInfo', async (ctx) => {
@@ -24,7 +25,6 @@ if (token) {
   });
 
   bot.command('unwatch', async (ctx) => {
-    console.log(!chats.find(({ id }) => ctx.chat.id === id));
     if (!chats.find(({ id }) => ctx.chat.id === id))
       return await ctx.sendMessage('The watcher is not active yet!');
     chats = chats.filter(({ id, interval }) => {
@@ -34,9 +34,16 @@ if (token) {
       }
       return true;
     });
+    console.log(`The watched has been stopped by ${ctx.chat.id}`);
   });
 
-  bot.launch();
+  if (process.env.NODE_ENV === 'production') {
+    process.env.DOMAIN && bot.launch({ webhook: { domain: process.env.DOMAIN, port: 3000 } });
+    console.log('The bot has been started via webhook!');
+  } else {
+    bot.launch();
+    console.log('The bot has been started via long-polling!');
+  }
 
   // Enable graceful stop
   process.once('SIGINT', () => bot.stop('SIGINT'));
