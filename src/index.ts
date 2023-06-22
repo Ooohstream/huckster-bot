@@ -38,7 +38,11 @@ if (token) {
   });
 
   if (process.env.NODE_ENV === 'production') {
-    process.env.DOMAIN && bot.launch({ webhook: { domain: process.env.DOMAIN, port: 3000 } });
+    process.env.DOMAIN &&
+      process.env.PORT &&
+      bot.launch({
+        webhook: { domain: process.env.DOMAIN, port: parseInt(process.env.PORT) },
+      });
     console.log('The bot has been started via webhook!');
   } else {
     bot.launch();
