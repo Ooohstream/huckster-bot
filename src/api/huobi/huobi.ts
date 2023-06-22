@@ -17,9 +17,7 @@ export class Huobi {
       );
 
       if (data.data) {
-        const sum =
-          data?.data?.map((tradeItem) => parseFloat(tradeItem.price)).reduce((a, b) => a + b, 0) /
-          10;
+        const sum = data?.data?.map((tradeItem) => parseFloat(tradeItem.price))[0];
         return sum.toFixed(2);
       }
     } catch {
