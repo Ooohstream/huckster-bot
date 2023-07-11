@@ -4,13 +4,16 @@ import { Bot, webhookCallback } from 'grammy';
 import { commandsMiddleware } from './middlewares';
 import { commandDescriptions as commands } from './commands';
 import { generateDevDomain } from './utils';
+import { sessionMiddleware } from './middlewares/session/session-middleware';
+import { SessionFlavouredContext } from './middlewares/session/interfaces';
 
-const bot = new Bot(String(process.env.TOKEN));
+const bot = new Bot<SessionFlavouredContext>(
+  String(process.env.TOKEN),
+);
+
+bot.use(sessionMiddleware);
 bot.use(commandsMiddleware);
-bot.use(async (ctx, next) => {
-  console.log(ctx.message);
-  await next();
-});
+
 const secretPath = String(process.env.TOKEN);
 const domain = String(
   process.env.DOMAIN || (await generateDevDomain()),

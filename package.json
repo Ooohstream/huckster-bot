@@ -14,6 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.17",
+    "@types/pg": "^8.10.2",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "eslint": "^8.43.0",
@@ -27,9 +28,11 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@grammyjs/storage-psql": "^2.3.0",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "grammy": "^1.17.1"
+    "grammy": "^1.17.1",
+    "pg": "^8.11.1"
   }
 }
