@@ -1,7 +1,7 @@
 import { Huobi } from '../api';
 
 export class CalculationService {
-  static commission: number = Number(process.env.COMMISSION) || 1;
+  static commission: number = Number(process.env.COMMISSION) || 0;
   static getAverageObject = async () => {
     const usdtAverage = parseFloat(await Huobi.getUsdtInfo());
     const tryAverage = parseFloat(await Huobi.getTryInfo());
