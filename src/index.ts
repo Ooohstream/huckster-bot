@@ -38,6 +38,9 @@ if (token) {
       return await ctx.reply('The watcher is not active yet!');
     chats = chats.filter(({ id, interval }) => {
       if (id === ctx.chat.id) {
+        //comment: Suppressed until investigation
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         clearInterval(interval);
         return false;
       }
