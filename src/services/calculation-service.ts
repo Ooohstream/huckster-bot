@@ -1,11 +1,12 @@
 import { Huobi } from '../api';
 
 export class CalculationService {
+  static commission: number = Number(process.env.COMMISSION) || 1;
   static getAverageObject = async () => {
     const usdtAverage = parseFloat(await Huobi.getUsdtInfo());
     const tryAverage = parseFloat(await Huobi.getTryInfo());
     const rubTryAverage = usdtAverage / tryAverage;
-    const rubTryAverageWithCommission = rubTryAverage + 0.05 * rubTryAverage;
+    const rubTryAverageWithCommission = rubTryAverage + this.commission * rubTryAverage;
 
     return {
       usdtAverage,
